@@ -1,17 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const MAX_COMMENTS_DISPLAYED = 10;
+
+class CommentBox extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+
+		};
+	}
+
+	/* 
+	 * Read comments from database into comments[]
+	 **/
+	getComments() {}
+
+    /*
+	 * Add a new comment. If limit reached, push oldest comment out,
+	 * put new comment on top. OUTPUT DATABASE INTERFACE
+	 **/
+	newComment() {}
+
+
+	render() {
+		return (
+			// TODO: one div for each reply
+			<div className="CommentBox">
+			<div className="Reply">
+			</div>
+			</div>
+		);
+	}
+}
+
+ReactDOM.render(
+	<CommentBox/>,
+	document.getElementById('root'),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

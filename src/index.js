@@ -12,15 +12,7 @@ class CommentBox extends React.Component {
 		};
 	}
 
-	/* 
-	 * Read comments from database into comments[]
-	 **/
 	getComments() {}
-
-    /*
-	 * Add a new comment. If limit reached, push oldest comment out,
-	 * put new comment on top. OUTPUT DATABASE INTERFACE
-	 **/
 	newComment() {}
 
 

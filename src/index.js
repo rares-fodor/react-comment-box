@@ -110,7 +110,7 @@ class Form extends React.Component {
                     placeholder=""
                     rows={COMMENT_TEXTAREA_ROWS}
                     onChange={this.handleChange}
-                    maxlength={MAX_COMMENT_LEN}
+                    maxLength={MAX_COMMENT_LEN}
                 ></textarea>
                 <div className="CommentFormActions">
                     <button type="button" onClick={this.handleClick}>save</button>

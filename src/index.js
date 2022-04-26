@@ -76,12 +76,30 @@ class CommentBox extends React.Component {
 
 
 class Form extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            content: null,
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+    
     // Trimite contentul din textarea inapoi in newComment (din CommentBox)
     handleClick(event) {
-        this.props.newComment(this.content.value);
+        if (this.state.content === null) {
+            alert("No input to submit!");
+            return;
+        }
+        this.props.newComment(this.state.content);
     }
 
-    // TODO: Submit handler in loc de click
+    handleChange(event) {
+        this.setState({
+            content: event.target.value
+        });
+    }
+
     render() {
         return (
             <form className="CommentForm">
@@ -89,11 +107,11 @@ class Form extends React.Component {
                 <textarea 
                     placeholder=""
                     rows={COMMENT_TEXTAREA_ROWS}
-                    ref={(content) => this.content = content}
-                >
-                </textarea>
+                    onChange={this.handleChange}
+                    required
+                ></textarea>
                 <div className="CommentFormActions">
-                    <button type="button" onClick={() => this.handleClick()}>save</button>
+                    <button type="button" onClick={this.handleClick}>save</button>
                 </div>
             </div>
             </form>

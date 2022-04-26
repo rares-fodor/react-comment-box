@@ -5,6 +5,7 @@ import './index.css';
 const MAX_COMMENTS_DISPLAYED = 10;
 const COMMENT_TEXTAREA_ROWS = 4;
 
+
 class CommentBox extends React.Component {
     constructor(props) {
         super(props);
@@ -13,6 +14,8 @@ class CommentBox extends React.Component {
             userIsAdmin: true,
         };
     }
+
+    updateDatabase() {}
 
     // Intoarce o lista cu obiecte Comment construite din this.state.comments
     getComments() {
@@ -23,24 +26,27 @@ class CommentBox extends React.Component {
                     id={comm.id}
                     author={comm.author}
                     content={comm.content}
+                    renderDeleteButton={this.state.userIsAdmin}
                     key={comm.id}
                 />);
         });
     }
 
+    getUsername() {}
 
     // Primeste continutul comentariului de la Form
     // citeste de la appwrite(?) username-ul, completeaza comentariul si il adauga
     // in this.state.comments
     newComment(content) {
         const comment = {
-            id: Date.now(),
             author: "John Titor", // Placeholder
             content: content,
+            id: Date.now(), // Maybe change to UUID
         };
         this.setState({
             comments: [comment].concat(this.state.comments)
         });
+        // TODO Update DB
     }
 
     // Primeste id-ul comentariului care trebuie sters
@@ -49,11 +55,14 @@ class CommentBox extends React.Component {
         this.setState({
             comments: this.state.comments.filter(elem => elem.id != id)
         });
+        // TODO Update DB
     }
 
     render() {
         const greeter = "Comments";
         const comments = this.getComments();
+
+        // TODO Test if user has permissions to del comments -> update userIsAdmin
 
         return (
             <div className="CommentComponent">
@@ -72,7 +81,7 @@ class Form extends React.Component {
         this.props.newComment(this.content.value);
     }
 
-    // Todo: Submit handler in loc de click
+    // TODO: Submit handler in loc de click
     render() {
         return (
             <form className="CommentForm">
@@ -98,11 +107,16 @@ class Comment extends React.Component {
     }
 
     render() {
+        const deleteButton = 
+            this.props.renderDeleteButton ? 
+            <button type="button" onClick={() => this.handleClick()}>del</button> :
+            <br/>;
+
         return (
             <div className="comment">
                 <p className="comment-author">{this.props.author}</p>
                 <p className="comment-content">{this.props.content}</p>
-                <button type="button" onClick={() => this.handleClick()}>del</button>
+                {deleteButton}
             </div>
         )
     }

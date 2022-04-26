@@ -4,7 +4,7 @@ import './index.css';
 
 const MAX_COMMENTS_DISPLAYED = 10;
 const COMMENT_TEXTAREA_ROWS = 4;
-
+const MAX_COMMENT_LEN = 200;
 
 class CommentBox extends React.Component {
     constructor(props) {
@@ -15,6 +15,7 @@ class CommentBox extends React.Component {
         };
     }
 
+    // TODO
     updateDatabase() {}
 
     // Intoarce o lista cu obiecte Comment construite din this.state.comments
@@ -32,6 +33,7 @@ class CommentBox extends React.Component {
         });
     }
 
+    // TODO get username from database
     getUsername() {}
 
     // Primeste continutul comentariului de la Form
@@ -108,7 +110,7 @@ class Form extends React.Component {
                     placeholder=""
                     rows={COMMENT_TEXTAREA_ROWS}
                     onChange={this.handleChange}
-                    required
+                    maxlength={MAX_COMMENT_LEN}
                 ></textarea>
                 <div className="CommentFormActions">
                     <button type="button" onClick={this.handleClick}>save</button>

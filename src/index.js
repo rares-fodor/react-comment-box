@@ -89,7 +89,7 @@ class Form extends React.Component {
     
     // Trimite contentul din textarea inapoi in newComment (din CommentBox)
     handleClick(event) {
-        if (this.state.content === null) {
+        if (this.state.content === "" || this.state.content === null) {
             alert("No input to submit!");
             return;
         }
